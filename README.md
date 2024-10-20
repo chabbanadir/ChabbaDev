@@ -127,24 +127,24 @@ Docker (optional, if you wish to run the project in a container)
 
 1.Clone the repository:
     
-    ```text
+```text
     git clone git@github.com:chabbanadir/ChabbaDev.git
-    ```
+```
 2.Navigate to the project directory:
-    ```text
+```text
     cd ChabbaDev
-    ```
+```
 1.Install dependencies:
-    ```text
+```text
     npm install
-    ```
+```
 
 ## Running the Development Server
 
-    To start the local development server:
-    ```text
+To start the local development server:
+```text
     npm run dev
-    ```
+```
 
 ## 🧩 Project Structure Details
 
