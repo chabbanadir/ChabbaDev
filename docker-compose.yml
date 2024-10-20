@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  chabba:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chabba
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+
