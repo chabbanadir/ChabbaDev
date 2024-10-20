@@ -128,22 +128,22 @@ Docker (optional, if you wish to run the project in a container)
 1.Clone the repository:
     
 ```text
-    git clone git@github.com:chabbanadir/ChabbaDev.git
+git clone git@github.com:chabbanadir/ChabbaDev.git
 ```
 2.Navigate to the project directory:
 ```text
-    cd ChabbaDev
+cd ChabbaDev
 ```
 1.Install dependencies:
 ```text
-    npm install
+npm install
 ```
 
 ## Running the Development Server
 
 To start the local development server:
 ```text
-    npm run dev
+npm run dev
 ```
 
 ## 🧩 Project Structure Details
@@ -182,14 +182,14 @@ All commands are run from the root of the project, from a terminal:
 
 If you prefer to run the project within a Docker container:
 
-    1.Build the Docker image:
-    ```text
-    npm run dev
-    ```
-    2.Run the Docker container:
-    ```text
-    docker run -p 4321:4321 appinflow-website
-    ```
+1.Build the Docker image:
+```text
+npm run dev
+```
+2.Run the Docker container:
+```text
+docker run -p 4321:4321 appinflow-website
+```
 The site will be accessible at http://localhost:4321.
 
 ## 👥 Contributing
