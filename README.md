@@ -49,11 +49,6 @@ Here's the structure of the project:
 │   │   └── layouts/
 │   │       ├── MainLayout.astro
 │   │       └── ServiceLayout.astro
-│   ├── data/
-│   │   ├── services.js
-│   │   ├── team.js
-│   │   ├── testimonials.js
-│   │   └── menuItems.js
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── solutions.astro
@@ -69,14 +64,10 @@ Here's the structure of the project:
 │   │   ├── approche-psd.astro
 │   │   ├── a-propos-de-nous.astro
 │   │   └── contact.astro
-│   ├── styles/
-│   │   ├── tailwind.css
-│   │   └── components.css
 │   ├── assets/
-│   │   ├── images/
-│   │   └── icons/
-│   └── utils/
-│       └── helpers.js
+│   │   ├── docs/
+│   │   ├── icons/
+|   |   └── illustration/ 
 ├── package.json
 ├── astro.config.mjs
 ├── tailwind.config.js
