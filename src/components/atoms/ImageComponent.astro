@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets'; // Use Astro's Image component
+
+interface Props {
+  src: any; // Use 'any' since it's dynamically passed as an imported image
+  alt: string; // Alt text is required
+  styleType?: 'rounded' | 'circle'; // Optional styles
+  width?: number; // Optional width
+  height?: number; // Optional height
+}
+
+const { src, alt, styleType = 'rounded', width, height } = Astro.props;
+
+const styleClass = styleType === 'circle' ? 'rounded-full' : 'rounded-lg';
+---
+
+
+  <Image
+    src={src} 
+    alt={alt}
+    width={width}
+    height={height}
+    class={`${styleClass}`}
+  />

@@ -1,0 +1,16 @@
+---
+interface Props {
+  src: string;        // Path to the SVG (string)
+  alt?: string;       // Optional alt text
+  className?: string; // Optional additional classes
+}
+
+const { src, alt = '',  className = '' } = Astro.props;
+---
+
+<!-- Render the SVG with custom styles -->
+<img
+  src={src}
+  alt={alt}
+  class={`w-7 h-7 text-gray-500 dark:text-gray-400 mb-3 ${className}`} 
+/>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  label: string;              // Badge text
+  className?: string;         // Additional custom styles for customization
+}
+
+const { label, className = '' } = Astro.props;
+---
+
+<span class={`inline-block px-4 py-1 text-sm font-medium rounded-full border ${className}`}>
+  {label}
+</span>

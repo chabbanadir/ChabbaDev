@@ -1,0 +1,73 @@
+---
+import InputField from "../components/atoms/InputField.astro";
+import Textarea from "../components/atoms/Textarea.astro";
+---
+
+<!-- Contact Form -->
+<h1 class="text-2xl font-bold mb-4">Contact Us</h1>
+
+<form id="contact-form" class="space-y-4">
+  <!-- Name Input Field -->
+  <InputField
+    id="name"
+    type="text"
+    label="Your Name"
+    className="block w-full px-4 py-2 bg-gray-100 "
+    aria-label="Full Name"  // Example of dynamic attribute
+  />
+
+  <!-- Email Input Field -->
+  <InputField
+    id="email"
+    type="email"
+    label="Your Email"
+    className="block w-full px-4 py-2 bg-gray-100 "
+    aria-label="Email Address"  // Example of dynamic attribute
+  />
+
+  <!-- Message Textarea -->
+  <Textarea
+    id="message"
+    label="Your Message"
+    className="block w-full px-4 py-2 bg-gray-100 "
+    aria-label="Message"
+  />
+
+  <!-- Submit Button -->
+  <button
+    type="submit"
+    class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
+  >
+    Submit
+  </button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contact-form')!;
+  
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+  
+        const nameInput = document.getElementById('name') as HTMLInputElement;
+        const emailInput = document.getElementById('email') as HTMLInputElement;
+        const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+  
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+  
+        const formData = { name, email, message };
+  
+        console.log('Form submitted:', formData);
+  
+        // Clear the form fields
+        nameInput.value = '';
+        emailInput.value = '';
+        messageInput.value = '';
+  
+        // Optionally, you can display a success message to the user
+        // alert('Your message has been sent!');
+      });
+    });
+</script>

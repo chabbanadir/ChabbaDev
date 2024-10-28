@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  label: string;           // Button text
+  iconSrc?: string;        // Optional icon source
+  iconAlt?: string;        // Optional alt text for the icon
+  iconPosition?: 'left' | 'right'; // Icon position relative to text
+  variant?: 'default' | 'muted' | 'primary' | 'alternative'; // Button style variants
+  className?: string;      // Additional custom styles
+  [key: string]: any;      // Additional attributes
+}
+
+const {
+  label,
+  iconSrc,
+  iconAlt = '',
+  iconPosition = 'left',
+  variant = 'default',
+  className = '',
+  ...rest
+} = Astro.props;
+
+// Class Variants
+const buttonVariants = {
+  default: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800',
+  primary: 'relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800',
+  muted: 'py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white focus:outline-none',
+  alternative: 'py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
+};
+
+---
+
+<button class={`${buttonVariants[variant]} ${className} inline-flex items-center justify-center px-5 py-2.5 rounded-lg`} {...rest}>
+  {iconSrc && iconPosition === 'left' ? (
+    <span class="me-2">
+      <Icon src={iconSrc} alt={iconAlt} className="w-5 h-5" />
+    </span>
+  ) : null}
+
+  <span>{label}</span>
+
+  {iconSrc && iconPosition === 'right' ? (
+    <span class="ms-2">
+      <Icon src={iconSrc} alt={iconAlt} className="w-5 h-5" />
+    </span>
+  ) : null}
+</button>
