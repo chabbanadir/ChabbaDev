@@ -1,0 +1,14 @@
+---
+interface Props {
+  label: string;
+  href: string;
+  icon?: string; // Optional icon (e.g., FontAwesome class or URL to image)
+}
+
+const { label, href, icon } = Astro.props;
+---
+
+<a href={href} class="footer-link text-gray-700 hover:text-blue-500 transition-colors duration-200">
+    {label}
+  </a>
+  

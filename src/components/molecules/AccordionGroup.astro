@@ -1,0 +1,58 @@
+---
+import AccordionItem from './AccordionItem.astro';
+
+const { items } = Astro.props;
+---
+
+<div id="accordion-group">
+  {items.map((item: { title: any; content: any; icon: any; customClasses: any; }, index: any) => (
+    <AccordionItem
+      title={item.title}
+      content={item.content}
+      icon={item.icon}
+      customClasses={item.customClasses}
+      index={index}
+    />
+  ))}
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const accordionGroup = document.getElementById("accordion-group");
+      let openIndex: number | null = null;
+  
+      accordionGroup?.addEventListener("click", (event) => {
+        const target = event.target as Element;
+        const button = target.closest(".accordion-header");
+        if (!button) return;
+  
+        const index = parseInt(button.getAttribute("data-index") || "", 10);
+        const content = button.nextElementSibling as HTMLElement;
+        if (isNaN(index) || !content) return;
+  
+        // Close previously opened accordion
+        if (openIndex !== null && openIndex !== index) {
+          const prevContent = accordionGroup.querySelector(`.accordion-content[data-index="${openIndex}"]`) as HTMLElement;
+          if (prevContent) {
+            prevContent.classList.add("hidden");
+            const previousArrow = prevContent.previousElementSibling?.querySelector(".accordion-arrow") as HTMLElement;
+            if (previousArrow) {
+              previousArrow.textContent = "▼";
+            }
+          }
+        }
+  
+        // Toggle current accordion
+        const arrow = button.querySelector(".accordion-arrow") as HTMLElement;
+        if (openIndex === index) {
+          content.classList.add("hidden");
+          if (arrow) arrow.textContent = "▼";
+          openIndex = null;
+        } else {
+          content.classList.remove("hidden");
+          if (arrow) arrow.textContent = "▲";
+          openIndex = index;
+        }
+      });
+    });
+  </script>

@@ -1,6 +1,5 @@
 ---
-
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <html lang="en">
@@ -10,10 +9,15 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
+
 	</head>
 	<body>
-		<h1>Astro</h1>
-		
-</div>
+   <MainLayout title="Home Page">
+    <div>
+      <!-- Your page-specific content goes here -->
+      <h1>Welcome to the Home Page</h1>
+      <p>This is your main content.</p>
+    </div>  
+   </MainLayout>
 	</body>
 </html>

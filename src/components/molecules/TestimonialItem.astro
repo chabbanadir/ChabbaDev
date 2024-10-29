@@ -1,0 +1,19 @@
+---
+interface Props {
+  author: string;
+  position: string;
+  testimonial: string;
+  imageUrl?: string;
+}
+
+const { author, position, testimonial, imageUrl = '/icons/cta/cta.svg' } = Astro.props;
+---
+
+<div class="testimonial-item p-6 max-w-md bg-white rounded-lg shadow-md hover:bg-blue-600 hover:text-white hover:shadow-lg transition-all duration-300 ease-in-out">
+  <div class="image mb-4">
+    <img src={imageUrl} alt={author} class="h-16 w-16 rounded-full mx-auto" />
+  </div>
+  <p class="testimonial text-gray-700 italic mb-4 text-center">"{testimonial}"</p>
+  <h3 class="author text-lg font-semibold mb-1 text-center">{author}</h3>
+  <p class="position text-gray-500 text-center">{position}</p>
+</div>
