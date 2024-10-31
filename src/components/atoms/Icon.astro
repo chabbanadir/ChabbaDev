@@ -1,16 +1,26 @@
 ---
 interface Props {
-  src: string;        // Path to the SVG (string)
+  src: string;        // Path to the SVG
   alt?: string;       // Optional alt text
   className?: string; // Optional additional classes
+  color?: 'black' | 'blue' | 'white'; // Optional color variation
 }
 
-const { src, alt = '',  className = '' } = Astro.props;
+const { src, alt = '', className = '', color = 'black' } = Astro.props;
+
+// Set the initial filter based on the color prop
+const initialFilter = color === 'blue'
+  ? 'brightness(0) saturate(100%) invert(33%) sepia(94%) saturate(750%) hue-rotate(186deg)' // blue
+  : color === 'white'
+  ? 'brightness(0) saturate(100%) invert(100%)' // white
+  : 'brightness(0) saturate(100%) invert(0%)'; // black (default)
 ---
 
-<!-- Render the SVG with custom styles -->
 <img
   src={src}
   alt={alt}
-  class={`w-7 h-7 text-gray-500 dark:text-gray-400 mb-3 ${className}`} 
+  class={`${className} w-4 h-4 transition duration-300`} 
+  style={`filter: ${initialFilter};`}
+  onmouseover="this.style.filter = 'brightness(0) saturate(100%) invert(33%) sepia(94%) saturate(750%) hue-rotate(186deg)';"
+  onmouseout={`this.style.filter = '${initialFilter}';`}
 />

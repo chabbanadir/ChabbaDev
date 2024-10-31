@@ -1,0 +1,81 @@
+---
+import Button from "../atoms/Button.astro";
+import ImageComponent from "../atoms/ImageComponent.astro";
+import type { ImageMetadata } from "astro";
+
+type ButtonProps = {
+  label: string;
+  iconSrc?: string;
+  iconAlt?: string;
+  iconPosition?: 'left' | 'right';
+  variant?: 'default' | 'muted' | 'primary' | 'alternative';
+  className?: string;
+  [key: string]: any;
+};
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  imageSrc?: ImageMetadata;
+  imageAlt?: string;
+  buttonProps?: ButtonProps;
+  layoutVariant?: 'text-left' | 'text-right';
+  backgroundVariant?: 'default' | 'gradient' | 'image';
+  className?: string;
+  [key: string]: any;
+}
+
+const {
+  title,
+  subtitle,
+  imageSrc,
+  imageAlt = "Hero Image",
+  buttonProps,
+  layoutVariant = 'text-left',
+  backgroundVariant = 'default',
+  className = '',
+  ...rest
+} = Astro.props;
+
+const backgroundVariants = {
+  default: 'bg-white',
+  gradient: 'bg-gradient-to-r from-blue-500 to-purple-600',
+  image: 'bg-[url("/path/to/image.jpg")] bg-cover bg-center',
+};
+
+const layoutVariants = {
+  'text-left': 'flex-col md:flex-row',
+  'text-right': 'flex-col md:flex-row-reverse',
+};
+
+const backgroundClasses = backgroundVariants[backgroundVariant];
+const layoutClasses = layoutVariants[layoutVariant];
+---
+
+<section class={`h-fit container mx-auto p-8 ${backgroundClasses} ${className}`} {...rest}>
+    <div class={`flex ${layoutClasses} items-center gap-8`}>
+        <!-- Section Texte -->
+        <div class="flex flex-col space-y-6 max-w-lg md:pr-8">
+            <h1 class="font-exo text-3xl md:text-5xl font-bold text-blue-900 leading-tight">{title}</h1>
+            {subtitle && (
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">{subtitle}</p>
+            )}
+            {buttonProps && (
+                <div class="flex justify-start mt-4">
+                    <Button {...buttonProps} />
+                </div>
+            )}
+        </div>
+
+        <!-- Section Image -->
+        <div class="flex-shrink-0 md:w-1/2 w-full mt-6 md:mt-0">
+            <ImageComponent
+                src={imageSrc}
+                alt={imageAlt}
+                styleType="rounded"
+                width={720}
+                height={480}
+            />
+        </div>
+    </div>
+</section>

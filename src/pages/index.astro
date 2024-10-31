@@ -1,5 +1,58 @@
 ---
+import HeroSection from "../components/organisms/HeroSection.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import HeroImage from "../assets/illustration/HeroImage.png";
+import ServicesSection from "../components/organisms/ServicesSection.astro";
+import digital from "../assets/illustration/services/Digitalization.jpg"
+import erp from "../assets/illustration/services/erp.jpg"
+import audit from "../assets/illustration/services/audit.jpg"
+
+const buttonProps = {
+  label: 'Commencez votre transformation digitale',
+  iconSrc: '/icons/cta/cta.svg',
+  iconAlt: 'CTA Icon',
+  iconPosition: 'right' as 'right', // Assurez que c'est une valeur littérale stricte
+  variant: 'muted' as 'muted',
+  className: 'py-2 px-6  rounded-lg shadow-lg',
+};
+const services = [
+  {
+    title: "Digitalization",
+    description: "Automatisez vos processus et améliorez votre productivité grâce à des solutions digitales.",
+    iconUrl: "/icons/Services/cloud-computing.svg",
+    coverImageUrl: digital,
+    linkUrl: "/services/digitalization",
+    supportDetails: [
+      { icon: "/icons/Services/automation.svg", text: "Automatisation des processus" },
+      { icon: "/icons/Services/cloud-computing.svg", text: "Informatique en nuage" },
+      { icon: "/icons/Services/data-analyst.svg", text: "Analyse de données" }
+    ]
+  },
+  {
+    title: "ERP Integration",
+    description: "Optimisez la gestion de vos opérations grâce à une intégration ERP personnalisée.",
+    iconUrl: "/icons/Services/erp.svg",
+    coverImageUrl: erp,
+    linkUrl: "/services/erp-integration",
+    supportDetails: [
+      { icon: "/icons/Services/Inventorymanagement.svg", text: "Gestion des stocks" },
+      { icon: "/icons/Services/reporting.svg", text: "Rapports et analyses" },
+      { icon: "/icons/Services/Sales.svg", text: "Gestion des ventes" }
+    ]
+  },
+  {
+    title: "Audit SEO",
+    description: "Améliorez votre visibilité en ligne et attirez plus de clients grâce à un audit SEO complet.",
+    iconUrl: "/icons/Services/Seo.svg",
+    coverImageUrl: audit,
+    linkUrl: "/services/audit-seo",
+    supportDetails: [
+      { icon: "/icons/Services/Backlinks.svg", text: "Optimisation des backlinks" },
+      { icon: "/icons/Services/Keyword.svg", text: "Recherche de mots clés" },
+      { icon: "/icons/Services/On-page.svg", text: "Optimisation On-page" }
+    ]
+  }
+];
 ---
 
 <html lang="en">
@@ -13,11 +66,21 @@ import MainLayout from "../layouts/MainLayout.astro";
 	</head>
 	<body>
    <MainLayout title="Home Page">
-    <div>
-      <!-- Your page-specific content goes here -->
-      <h1>Welcome to the Home Page</h1>
-      <p>This is your main content.</p>
-    </div>  
+		
+		<HeroSection
+		title="Transformez votre Entreprise avec des Solutions Digitales Personnalisées"
+		subtitle="AppInflow vous accompagne avec des solutions innovantes et personnalisées pour optimiser vos processus, améliorer la performance de votre site web, et garantir un support 24/7."
+		imageSrc={HeroImage}
+		imageAlt="Illustration of Hero Section"
+		buttonProps={buttonProps}
+		layoutVariant="text-left"
+
+		className="py-20"
+		/>
+	  <ServicesSection 
+	  services={services}
+	  title="Nos Services"
+	  subtitle="Ready to start your digital transformation?"/>
    </MainLayout>
 	</body>
 </html>

@@ -1,14 +1,19 @@
 ---
+import Icon from '../atoms/Icon.astro';
+
 interface Props {
   label: string;
   href: string;
+  subitems?: {label:string ,href:string }[]; 
+  icon: string
 }
 
-const { label, href } = Astro.props;
+const { label, href , icon} = Astro.props;
 ---
 
-<a href={href} class="menu relative text-white font-bold px-2 py-2 transition duration-300 ease-in-out">
-  {label}
+<a href={href} class="menu relative flex items-center space-x-2 text-black font-bold px-2 py-2 transition duration-300 ease-in-out">
+  {icon && <Icon src={icon} alt={`${label} icon`} className="w-5 h-5" />}
+  <span>{label}</span>
 </a>
 
 <style>

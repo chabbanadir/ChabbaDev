@@ -1,0 +1,76 @@
+---
+import InputField from '../atoms/InputField.astro';
+import FooterLink from '../molecules/FooterLink.astro';
+import Icon from '../atoms/Icon.astro';
+
+const footerLinks = [
+  { label: "Accueil", href: "#", icon: "/icons/navicons/home.svg" },
+  { label: "Solutions", href: "#", icon: "/icons/navicons/Solution.svg" },
+  { label: "Services", href: "#", icon: "/icons/navicons/Services.svg" },
+  { label: "Approche PSD", href: "#", icon: "/icons/navicons/psd.svg" },
+  { label: "Contact", href: "#", icon: "/icons/navicons/Contact.svg" }
+];
+
+const socialLinks = [
+  { label: "Facebook", href: "https://facebook.com", icon: "/icons/facebook.svg" },
+  { label: "Twitter", href: "https://twitter.com", icon: "/icons/twitter.svg" },
+  { label: "LinkedIn", href: "https://linkedin.com", icon: "/icons/linkedin.svg" }
+];
+---
+<footer class="w-full bg-blue-900 text-white py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+      
+      <!-- Newsletter Section -->
+      <div class="space-y-4 md:border-r md:border-gray-300 pr-6">
+        <h3 class="text-2xl font-bold">Newsletter</h3>
+        <p>Want to know what we're up to? Sign up for the newsletter and join our tribe.</p>
+        <form class="flex items-center  overflow-hidden">
+          <Icon src="/icons/email.svg" alt="Email Icon" className="w-10 h-10 mx-2 text-white" color="white" />
+          <InputField
+            id="email"
+            type="email"
+            label="Email address"
+            className="flex-grow px-4 py-2 my-4  text-white "
+          />
+          <button class="px-4 py-2 bg-white text-blue-900 rounded rounded-lg font-semibold hover:bg-blue-100 transition-colors duration-200">
+            Subscribe
+          </button>
+        </form>
+      </div>
+  
+      <!-- Quick Links Section -->
+      <div class="space-y-6 md:border-r md:border-gray-300 px-6">
+        <h3 class="text-2xl font-bold">Quick Links</h3>
+        <ul>
+          {footerLinks.map(link => (
+            <li class="flex items-center space-x-2 mb-2">
+              <Icon src={link.icon} alt={link.label} className="w-5 h-5" color="white" />
+              <FooterLink label={link.label} href={link.href} />
+            </li>
+          ))}
+        </ul>
+      </div>
+  
+      <!-- Social Media and Contact Section -->
+      <div class="space-y-6 pl-6">
+        <div>
+          <h3 class="text-2xl font-bold">Follow Us</h3>
+          <ul class="flex space-x-4">
+            {socialLinks.map(link => (
+              <li>
+                <a href={link.href} aria-label={link.label} class="flex items-center space-x-2 hover:text-blue-500 transition-colors duration-200">
+                  <Icon src={link.icon} alt={link.label} className="w-5 h-5" color="white" />
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="mt-6">
+          <h3 class="text-2xl font-bold">Contact</h3>
+          <p><strong>T:</strong> +40 753 353 956</p>
+          <p><strong>E:</strong> bistrolanoi@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </footer>

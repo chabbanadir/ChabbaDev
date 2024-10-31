@@ -1,15 +1,17 @@
 ---
 import { Image } from 'astro:assets'; // Use Astro's Image component
+import type { ImageMetadata } from "astro";
 
 interface Props {
-  src: any; // Use 'any' since it's dynamically passed as an imported image
+  src:any | ImageMetadata; // Use 'any' since it's dynamically passed as an imported image
   alt: string; // Alt text is required
   styleType?: 'rounded' | 'circle'; // Optional styles
   width?: number; // Optional width
   height?: number; // Optional height
+  className?: string;
 }
 
-const { src, alt, styleType = 'rounded', width, height } = Astro.props;
+const { src, alt, styleType = 'rounded', width, height, className="" } = Astro.props;
 
 const styleClass = styleType === 'circle' ? 'rounded-full' : 'rounded-lg';
 ---
@@ -20,5 +22,5 @@ const styleClass = styleType === 'circle' ? 'rounded-full' : 'rounded-lg';
     alt={alt}
     width={width}
     height={height}
-    class={`${styleClass}`}
+    class={`${styleClass}  ${className} object-cover`}
   />

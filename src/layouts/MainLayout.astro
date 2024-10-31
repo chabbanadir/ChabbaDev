@@ -1,8 +1,7 @@
 ---
 import Footer from '../components/organisms/Footer.astro';
 import Navbar from '../components/organisms/Navbar.astro';
-
-
+import logo from '../assets/appinflowlogo.png'
 
 interface Props {
   title: string;
@@ -10,6 +9,61 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const buttonProps = {
+  label: 'Apprendre plus',
+  iconSrc: '/icons/cta/cta.svg',
+  iconAlt: 'CTA Icon',
+  iconPosition: 'right' as 'right', // Assurez-vous que c'est un littéral
+  variant: 'default' as 'default',  // Assurez-vous que c'est un littéral
+  className: '',
+};
+const links = [
+  {
+    label: "Accueil",
+    href: "#",
+    icon: "/icons/navicons/home.svg"
+  },
+  {
+    label: "Solutions",
+    href: "#",
+    icon: "/icons/navicons/Solution.svg",
+    subitems: [
+      { label: "Digitalization", href: "#", icon: "/icons/navicons/appweb.svg" },
+      { label: "Integration ERP", href: "#", icon: "/icons/navicons/Erp.svg" },
+      { label: "Audit SEO", href: "#", icon: "/icons/navicons/SEo.svg" }
+    ]
+  },
+  {
+    label: "Services",
+    href: "#",
+    icon: "/icons/navicons/Services.svg",
+    subitems: [
+      { label: "Création de Landing Pages", href: "#", icon: "/icons/navicons/landing.svg" },
+      { label: "Développement Front-End & Back-End", href: "#" ,icon :"/icons/navicons/appweb.svg"},
+      { label: "Intégration de Solutions ERP Odoo", href: "#", icon: "/icons/navicons/Erp.svg" },
+      { label: "Développement d'Applications Web", href: "#", icon: "/icons/navicons/dev.svg" },
+      { label: "SEO (Référencement Naturel)", href: "#", icon: "/icons/navicons/SEo.svg" },
+      { label: "Gestion de Communauté", href: "#", icon: "/icons/navicons/Communauty.svg" },
+      { label: "Projets d'Intelligence Artificielle", href: "#", icon: "/icons/navicons/Ai.svg" }
+    ]
+  },
+  {
+    label: "Approche PSD",
+    href: "#",
+    icon: "/icons/navicons/psd.svg"
+  },
+  ,
+  {
+    label: "Contact",
+    href: "#",
+    icon: "/icons/navicons/Contact.svg"
+  },
+  {
+    label: "À Propos",
+    href: "#",
+    icon: "/icons/navicons/apropo.svg"
+  }
+];
 ---
 
 <html lang="en">
@@ -19,8 +73,14 @@ const { title } = Astro.props;
     <title>{title}</title>
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
-  <body class="bg-gray-100 text-gray-900">
-    <Navbar />
+  <body >
+    <Navbar 
+    links = {links}
+    imageSrc = {logo}
+    ImageAlt= "logo"
+    ButtonProps= {buttonProps}
+    className=""
+    />
     <main class="container mx-auto p-6">
       
       <slot />

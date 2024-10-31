@@ -1,4 +1,6 @@
 ---
+import Icon from '../atoms/Icon.astro';
+
 interface Props {
   label: string;
   href: string;
@@ -8,7 +10,7 @@ interface Props {
 const { label, href, icon } = Astro.props;
 ---
 
-<a href={href} class="footer-link text-gray-700 hover:text-blue-500 transition-colors duration-200">
-    {label}
-  </a>
-  
+<a href={href} class="footer-link flex items-center hover:underline space-x-2  hover:text-blue-500 transition-colors duration-200" aria-label={label}>
+  {icon && <Icon src={icon} alt={`${label} icon`} className="w-4 h-4" />}
+  <span>{label}</span>
+</a>

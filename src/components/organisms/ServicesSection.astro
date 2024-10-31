@@ -1,0 +1,37 @@
+---
+import ServiceCard from '../molecules/ServiceCard.astro';
+
+interface Service {
+  title: string;
+  description: string;
+  iconUrl: string;
+  coverImageUrl: ImageMetadata;
+  linkUrl: string;
+  supportDetails: { icon: string; text: string }[];
+}
+
+interface Props {
+  services: Service[];
+  title:string;
+  subtitle:string
+}
+
+const { services,title ,subtitle} = Astro.props;
+---
+
+<section class=" py-16 text-center">
+  <h2 class="text-3xl font-bold text-blue-600 mb-8">{title}</h2>
+  <p class="text-lg text-gray-500 mb-4">{subtitle}</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {services.map(service => (
+      <ServiceCard
+        title={service.title}
+        description={service.description}
+        iconUrl={service.iconUrl}
+        coverImageUrl={service.coverImageUrl}
+        linkUrl={service.linkUrl}
+        supportDetails={service.supportDetails}
+      />
+    ))}
+  </div>
+</section>
